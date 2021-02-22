@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, forwardRef } from 'react'
 import figlet from 'figlet'
 import { fonts } from "./fonts.js"
 
@@ -10,7 +10,7 @@ export const layout = {
   "universal smushing": "universal smushing",
 }
 
-export const Figlet = ({
+export const Figlet = forwardRef(({
   text,
   font = 'Standard',
   fontData = fonts.font_Standard.value,
@@ -18,7 +18,7 @@ export const Figlet = ({
   verticalLayout = layout.default,
   width = 80,
   whitespaceBreak = true,
-  ...props }) => {
+  ...props }, ref) => {
   const [ascii, setAscii] = useState('')
   useEffect(() => {
     figlet.parseFont(font, fontData)
@@ -39,5 +39,5 @@ export const Figlet = ({
       setAscii(data)
     })
   }, [text, font, horizontalLayout, verticalLayout, width, whitespaceBreak])
-  return <pre {...props}>{ascii}</pre>
-}
+  return <pre ref={ref} {...props}>{ascii}</pre>
+})

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import './App.css'
 import { Figlet } from './Figlet'
 import { fonts } from "./fonts.js"
@@ -19,13 +19,33 @@ function App() {
     </div>
   );
 }
+function copyToClipboard(node) {
+  const copyText = node.textContent;
+  const textArea = document.createElement('textarea');
+  textArea.style.position = "absolute";
+  textArea.style.left = "-100%";
+  textArea.textContent = copyText;
+  document.body.append(textArea);
+  textArea.select();
+  document.execCommand("copy");
+  textArea.remove()
+}
+
+const FigletContainer = (props) => {
+  const ref = useRef(null)
+  return <div>
+    <div>{props.font}</div>
+    <Figlet {...props} ref={ref} />
+    <button onClick={() => copyToClipboard(ref.current)}>Copy</button>
+  </div>
+}
 
 function MultiApp() {
   const [text, setText] = useState("Type Something")
   return (
     <div className="App">
       <textarea value={text} onChange={(e) => { setText(e.target.value) }}></textarea>
-      {Object.values(fonts).map((font) => <Figlet key={font.name} text={text} font={font.name} fontData={font.value} />)}
+      {Object.values(fonts).map((font) => <FigletContainer key={font.name} text={text} font={font.name} fontData={font.value} />)}
     </div>
   );
 }
