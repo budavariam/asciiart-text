@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react"
+import './App.css'
+import { Figlet } from './Figlet'
+import { fonts } from "./fonts.js"
+
 
 function App() {
+  const [text, setText] = useState("Type Something")
+  const [font, setFont] = useState(() => (fonts.font_Standard))
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <select onChange={(e) => {
+        setFont(fonts[e.target.value])
+      }}>
+        {Object.entries(fonts).map(([fontKey, { name }]) => <option key={fontKey} value={fontKey}>{name}</option>)}
+      </select>
+      <textarea value={text} onChange={(e) => { setText(e.target.value) }}></textarea>
+      <Figlet text={text} font={font.name} fontData={font.value} />
     </div>
   );
 }
