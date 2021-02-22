@@ -20,4 +20,14 @@ function App() {
   );
 }
 
-export default App;
+function MultiApp() {
+  const [text, setText] = useState("Type Something")
+  return (
+    <div className="App">
+      <textarea value={text} onChange={(e) => { setText(e.target.value) }}></textarea>
+      {Object.values(fonts).map((font) => <Figlet key={font.name} text={text} font={font.name} fontData={font.value} />)}
+    </div>
+  );
+}
+
+export default MultiApp;
