@@ -1,14 +1,7 @@
 import React, { useEffect, useState, forwardRef } from 'react'
 import figlet from 'figlet'
 import { fonts } from "../helpers/fonts.js"
-
-export const layout = {
-  "default": "default",
-  "full": "full",
-  "fitted": "fitted",
-  "controlled smushing": "controlled smushing",
-  "universal smushing": "universal smushing",
-}
+import { layout } from '../helpers/layout.js'
 
 export const Figlet = forwardRef(({
   text,

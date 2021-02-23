@@ -8,22 +8,18 @@ import {
 import { Favourites } from "./routes/Favourites"
 import { Multiple } from "./routes/Multiple"
 import { Single } from "./routes/Single"
+import Button from '@material-ui/core/Button'
+import ButtonGroup from '@material-ui/core/ButtonGroup'
 
 export default function App() {
     return (<Router>
         <div>
             <nav>
-                <ul>
-                    <li>
-                        <Link to="/">Single</Link>
-                    </li>
-                    <li>
-                        <Link to="/multi">Multiple</Link>
-                    </li>
-                    <li>
-                        <Link to="/favourites">Favourites</Link>
-                    </li>
-                </ul>
+                <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
+                    <Link component={Button} to="/">Single</Link>
+                    <Link component={Button} to="/multi">Multiple</Link>
+                    <Link component={Button} to="/favourites">Favourites</Link>
+                </ButtonGroup>
             </nav>
             <Switch>
                 <Route path="/multi">

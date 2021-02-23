@@ -21,11 +21,11 @@ fs.readdir(`node_modules/${fontPath}`, (err, files) => {
             "",
             "export const fonts = {"
         ],
-        parsedData.map((data) => `  ${data.objectKey}: { name: "${data.accessName}", value: ${data.objectKey} },`),
+        parsedData.map((data) => `  ${data.objectKey}: { name: "${data.accessName}", value: ${data.objectKey}, fontKey: "${data.objectKey}" },`),
         [
             "}"
         ]).join("\n")
 
-    fs.writeFile("./src/asd.js", finalData, () => { console.log("DONE") })
+    fs.writeFile("./src/helpers/fonts.js", finalData, () => { console.log("DONE") })
 });
 
