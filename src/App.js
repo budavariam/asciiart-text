@@ -1,55 +1,41 @@
-import { useState, useRef } from "react"
-import './App.css'
-import { Figlet } from './Figlet'
-import { fonts } from "./fonts.js"
+import React from "react"
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom"
+import { Favourites } from "./routes/Favourites"
+import { Multiple } from "./routes/Multiple"
+import { Single } from "./routes/Single"
 
-
-function App() {
-  const [text, setText] = useState("Type Something")
-  const [font, setFont] = useState(() => (fonts.font_Standard))
-  return (
-    <div className="App">
-      <select onChange={(e) => {
-        setFont(fonts[e.target.value])
-      }}>
-        {Object.entries(fonts).map(([fontKey, { name }]) => <option key={fontKey} value={fontKey}>{name}</option>)}
-      </select>
-      <textarea value={text} onChange={(e) => { setText(e.target.value) }}></textarea>
-      <Figlet text={text} font={font.name} fontData={font.value} />
-    </div>
-  );
+export default function App() {
+    return (<Router>
+        <div>
+            <nav>
+                <ul>
+                    <li>
+                        <Link to="/">Single</Link>
+                    </li>
+                    <li>
+                        <Link to="/multi">Multiple</Link>
+                    </li>
+                    <li>
+                        <Link to="/favourites">Favourites</Link>
+                    </li>
+                </ul>
+            </nav>
+            <Switch>
+                <Route path="/multi">
+                    <Multiple />
+                </Route>
+                <Route path="/favourites">
+                    <Favourites />
+                </Route>
+                <Route path="/">
+                    <Single />
+                </Route>
+            </Switch>
+        </div>
+    </Router>)
 }
-function copyToClipboard(node) {
-  const copyText = node.textContent;
-  const textArea = document.createElement('textarea');
-  textArea.style.position = "absolute";
-  textArea.style.left = "-100%";
-  textArea.textContent = copyText;
-  document.body.append(textArea);
-  textArea.select();
-  document.execCommand("copy");
-  textArea.remove()
-}
-
-const FigletContainer = (props) => {
-  const ref = useRef(null)
-  return <div>
-    <div>{props.font}</div>
-    <Figlet {...props} ref={ref} />
-    <button onClick={() => copyToClipboard(ref.current)}>Copy</button>
-  </div>
-}
-
-function MultiApp() {
-  const [text, setText] = useState("Type Something")
-  const [width, setWidth] = useState(80)
-  return (
-    <div className="App">
-      <input type="number" min={0} max={3000} value={width} onChange={(e) => { setWidth(e.target.value) }} />
-      <textarea value={text} onChange={(e) => { setText(e.target.value) }}></textarea>
-      {Object.values(fonts).map((font) => <FigletContainer key={font.name} text={text} font={font.name} fontData={font.value} width={width} />)}
-    </div>
-  );
-}
-
-export default MultiApp;

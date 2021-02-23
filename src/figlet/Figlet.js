@@ -1,6 +1,6 @@
 import React, { useEffect, useState, forwardRef } from 'react'
 import figlet from 'figlet'
-import { fonts } from "./fonts.js"
+import { fonts } from "../helpers/fonts.js"
 
 export const layout = {
   "default": "default",
