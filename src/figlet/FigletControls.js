@@ -27,8 +27,8 @@ export function FigletControls({ items = null }) {
 
     useEffect(() => {
         // TODO: use useReducer to prevent jsonparse after every render
-        if (Boolean(getFavourites()[font.name]) !== fav[font.name]) {
-            setFavourite(font.name, fav[font.name])
+        if (Boolean(getFavourites()[font.fontKey]) !== fav[font.fontKey]) {
+            setFavourite(font.fontKey, fav[font.fontKey])
         }
     }, [font, fav])
 
@@ -114,7 +114,7 @@ export function FigletControls({ items = null }) {
                                     checkedIcon={<Favorite />}
                                     name="markFavourite"
                                     onChange={(e) => {
-                                        setFav((prevFav) => ({ ...prevFav, [font.name]: e.target.checked }))
+                                        setFav((prevFav) => ({ ...prevFav, [font.fontKey]: e.target.checked }))
                                     }}
                                     checked={fav[font.name]}
                                 />}
@@ -136,7 +136,6 @@ export function FigletControls({ items = null }) {
                     </FormControl>
                 </Grid>
                 <Grid item xs={12}>
-
                     {items === null
                         ? <FigletContainer
                             text={text}
