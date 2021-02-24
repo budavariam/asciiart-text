@@ -9,19 +9,19 @@ import { Favourites } from "./routes/Favourites"
 import { Multiple } from "./routes/Multiple"
 import { Single } from "./routes/Single"
 import Button from '@material-ui/core/Button'
-import ButtonGroup from '@material-ui/core/ButtonGroup'
 import Container from '@material-ui/core/Container'
+import { Toolbar, AppBar } from "@material-ui/core"
 
 export default function App() {
     return (<Router>
         <Container>
-            <nav>
-                <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
+            <AppBar position="static" color="inherit" elevation={0} >
+                <Toolbar>
                     <Link component={Button} to="/">Single</Link>
                     <Link component={Button} to="/multi">Multiple</Link>
                     <Link component={Button} to="/favourites">Favourites</Link>
-                </ButtonGroup>
-            </nav>
+                </Toolbar>
+            </AppBar>
             <Switch>
                 <Route path="/multi">
                     <Multiple />

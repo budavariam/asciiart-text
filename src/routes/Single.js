@@ -11,7 +11,6 @@ import { Checkbox, FormControlLabel } from "@material-ui/core"
 import Favorite from '@material-ui/icons/Favorite'
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder'
 import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
 import { FigletContainer } from "../figlet/FigletContainer"
 
 const fontMenuItems = Object.entries(fonts).map(([fontKey, { name }]) => <MenuItem key={fontKey} value={fontKey}>{name}</MenuItem>)

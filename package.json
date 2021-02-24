@@ -40,6 +40,7 @@
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "figlet": "^1.5.0",
+    "react-lazyload": "^3.2.0",
     "react-router-dom": "^5.2.0"
   }
 }
