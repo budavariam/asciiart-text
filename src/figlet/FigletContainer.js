@@ -7,7 +7,7 @@ import LazyLoad from 'react-lazyload';
 export const FigletContainer = (props) => {
   const ref = useRef(null)
   return <LazyLoad height={200}>
-    <Card variant="outlined">
+    <Card variant="outlined" style={{marginBottom: "1em"}}>
       <CardContent>
         <Typography color="textSecondary" gutterBottom>
           {props.font}

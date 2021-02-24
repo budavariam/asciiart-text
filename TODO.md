@@ -8,4 +8,5 @@
 - [+] navigate between single items with the arrow key
 - [] filter for name in multiple figlet view
 - [+] mark as favourite to e.g localstorage. show favourites
-- [] extract controls from single view
+- [+] extract controls from single view
+- [] move favourites inside the container
