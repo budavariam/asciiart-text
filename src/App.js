@@ -10,10 +10,11 @@ import { Multiple } from "./routes/Multiple"
 import { Single } from "./routes/Single"
 import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
+import Container from '@material-ui/core/Container'
 
 export default function App() {
     return (<Router>
-        <div>
+        <Container>
             <nav>
                 <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
                     <Link component={Button} to="/">Single</Link>
@@ -32,6 +33,6 @@ export default function App() {
                     <Single />
                 </Route>
             </Switch>
-        </div>
+        </Container>
     </Router>)
 }
