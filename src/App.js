@@ -14,7 +14,7 @@ import { Toolbar, AppBar } from "@material-ui/core"
 import { FavouriteContextProvider } from "./favourites/FavouriteContext"
 
 export default function App() {
-    return (<Router>
+    return (<Router basename={process.env.PUBLIC_URL} >
         <FavouriteContextProvider>
             <Container>
                 <AppBar position="static" color="inherit" elevation={0} >
