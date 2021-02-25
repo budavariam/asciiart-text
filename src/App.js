@@ -11,28 +11,31 @@ import { Single } from "./routes/Single"
 import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
 import { Toolbar, AppBar } from "@material-ui/core"
+import { FavouriteContextProvider } from "./favourites/FavouriteContext"
 
 export default function App() {
     return (<Router>
-        <Container>
-            <AppBar position="static" color="inherit" elevation={0} >
-                <Toolbar>
-                    <Link component={Button} to="/">Single</Link>
-                    <Link component={Button} to="/multi">Multiple</Link>
-                    <Link component={Button} to="/favourites">Favourites</Link>
-                </Toolbar>
-            </AppBar>
-            <Switch>
-                <Route path="/multi">
-                    <Multiple />
-                </Route>
-                <Route path="/favourites">
-                    <Favourites />
-                </Route>
-                <Route path="/">
-                    <Single />
-                </Route>
-            </Switch>
-        </Container>
+        <FavouriteContextProvider>
+            <Container>
+                <AppBar position="static" color="inherit" elevation={0} >
+                    <Toolbar>
+                        <Button component={Link} to="/">Single</Button>
+                        <Button component={Link} to="/multi">Multiple</Button>
+                        <Button component={Link} to="/favourites">Favourites</Button>
+                    </Toolbar>
+                </AppBar>
+                <Switch>
+                    <Route path="/multi">
+                        <Multiple />
+                    </Route>
+                    <Route path="/favourites">
+                        <Favourites />
+                    </Route>
+                    <Route path="/">
+                        <Single />
+                    </Route>
+                </Switch>
+            </Container>
+        </FavouriteContextProvider>
     </Router>)
 }

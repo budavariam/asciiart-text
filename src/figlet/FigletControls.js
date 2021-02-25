@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { fonts } from "../helpers/fonts.js"
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
@@ -6,10 +6,7 @@ import FormControl from '@material-ui/core/FormControl'
 import TextField from '@material-ui/core/TextField'
 import Select from '@material-ui/core/Select'
 import { layout } from "../helpers/layout"
-import { getFavourites, setFavourite } from "../helpers/favourites"
 import { Checkbox, FormControlLabel, Paper } from "@material-ui/core"
-import Favorite from '@material-ui/icons/Favorite'
-import FavoriteBorder from '@material-ui/icons/FavoriteBorder'
 import Grid from '@material-ui/core/Grid'
 import { FigletContainer } from "../figlet/FigletContainer"
 
@@ -23,14 +20,6 @@ export function FigletControls({ items = null }) {
     const [horizontalLayout, setHorizontalLayout] = useState(() => layout.default)
     const [verticalLayout, setVerticalLayout] = useState(() => layout.default)
     const [whitespaceBreak, setWhitespaceBreak] = useState(true)
-    const [fav, setFav] = useState(() => getFavourites())
-
-    useEffect(() => {
-        // TODO: use useReducer to prevent jsonparse after every render
-        if (Boolean(getFavourites()[font.fontKey]) !== fav[font.fontKey]) {
-            setFavourite(font.fontKey, fav[font.fontKey])
-        }
-    }, [font, fav])
 
     return (
         <form noValidate autoComplete="off">
@@ -105,23 +94,6 @@ export function FigletControls({ items = null }) {
                         />
                     </FormControl>
                 </Grid>
-                <Grid item xs={2}>
-                    <FormControl fullWidth>
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    icon={<FavoriteBorder />}
-                                    checkedIcon={<Favorite />}
-                                    name="markFavourite"
-                                    onChange={(e) => {
-                                        setFav((prevFav) => ({ ...prevFav, [font.fontKey]: e.target.checked }))
-                                    }}
-                                    checked={fav[font.name]}
-                                />}
-                            label="Favourite"
-                        />
-                    </FormControl>
-                </Grid>
                 <Grid item xs={12}>
                     <FormControl fullWidth>
                         <TextField
@@ -139,8 +111,7 @@ export function FigletControls({ items = null }) {
                     {items === null
                         ? <FigletContainer
                             text={text}
-                            font={font.name}
-                            fontData={font.value}
+                            font={font}
                             width={parseInt(width, 10)}
                             horizontalLayout={horizontalLayout.value}
                             verticalLayout={verticalLayout.value}
@@ -148,9 +119,9 @@ export function FigletControls({ items = null }) {
                         : items.length > 0
                             ? items.map((currentFont) => (
                                 <FigletContainer
+                                    key={currentFont.fontKey}
                                     text={text}
-                                    font={currentFont.name}
-                                    fontData={currentFont.value}
+                                    font={currentFont}
                                     width={parseInt(width, 10)}
                                     horizontalLayout={horizontalLayout.value}
                                     verticalLayout={verticalLayout.value}

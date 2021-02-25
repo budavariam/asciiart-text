@@ -1,11 +1,17 @@
 import { fonts } from "../helpers/fonts"
 import { FigletControls } from "../figlet/FigletControls"
-import { getFavourites } from "../helpers/favourites"
-
+import { FavouriteContextConsumer } from "../favourites/FavouriteContext"
 
 export function Favourites() {
-    const fontList = Object.keys(getFavourites()).map((fontName) => fonts[fontName]).sort((a, b) => a.fontKey.localeCompare(b.fontKey)) || null
     return (
-        <FigletControls items={fontList} />
+        <FavouriteContextConsumer>
+            {(ctxValue) => {
+                const fontList = Object
+                    .keys(ctxValue.favourites)
+                    .map((fontName) => fonts[fontName])
+                    .sort((a, b) => a.fontKey.localeCompare(b.fontKey)) || null
+                return (<FigletControls items={fontList} />)
+            }}
+        </FavouriteContextConsumer>
     )
 }

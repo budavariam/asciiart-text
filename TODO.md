@@ -9,4 +9,8 @@
 - [] filter for name in multiple figlet view
 - [+] mark as favourite to e.g localstorage. show favourites
 - [+] extract controls from single view
-- [] move favourites inside the container
+- [+] move favourites inside the container
+- [] add github actions CI to deploy
+- [] dockerize development
+- [] analyze bundle size, and move materialui components out
+- [] keep selection between page changes

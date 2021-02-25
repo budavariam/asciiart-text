@@ -1,15 +1,9 @@
 const localStoragekey = "data-favourites"
 
 
-export const setFavourite = (name, value) => {
+export const setFavourites = (favourites) => {
     try {
-        const data = JSON.parse(window.localStorage.getItem(localStoragekey)) || {}
-        if (value) {
-            data[name] = true
-        } else {
-            delete data[name]
-        }
-        window.localStorage.setItem(localStoragekey, JSON.stringify(data))
+        window.localStorage.setItem(localStoragekey, JSON.stringify(favourites))
     } catch (err) {
         console.error("Failed to set localStorage items.", err)
     }
