@@ -12,6 +12,7 @@ import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
 import { Toolbar, AppBar } from "@material-ui/core"
 import { FavouriteContextProvider } from "./favourites/FavouriteContext"
+import { version } from '../package.json'
 
 export default function App() {
     return (<Router basename={process.env.PUBLIC_URL} >
@@ -32,7 +33,7 @@ export default function App() {
                         <Favourites />
                     </Route>
                     <Route path="/version">
-                        1.0
+                        {version}
                     </Route>
                     <Route path="/">
                         <Single />
