@@ -10,7 +10,7 @@
 - [x] mark as favourite to e.g localstorage. show favourites
 - [x] extract controls from single view
 - [x] move favourites inside the container
-- [ ] add github actions CI to deploy
+- [x] add github actions CI to deploy to gh-pages
 - [x] dockerize development
-- [ ] analyze bundle size, and move materialui components out
-- [ ] keep selection between page changes
+- [x] analyze bundle size, and move materialui components out
+- [ ] keep selection between page changes and keep the controls on top of the page during scrolling

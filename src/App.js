@@ -10,7 +10,8 @@ import { Multiple } from "./routes/Multiple"
 import { Single } from "./routes/Single"
 import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
-import { Toolbar, AppBar } from "@material-ui/core"
+import Toolbar from "@material-ui/core/Toolbar"
+import AppBar from "@material-ui/core/AppBar"
 import { FavouriteContextProvider } from "./favourites/FavouriteContext"
 import { version } from '../package.json'
 

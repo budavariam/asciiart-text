@@ -6,7 +6,9 @@ import FormControl from '@material-ui/core/FormControl'
 import TextField from '@material-ui/core/TextField'
 import Select from '@material-ui/core/Select'
 import { layout } from "../helpers/layout"
-import { Checkbox, FormControlLabel, Paper } from "@material-ui/core"
+import Checkbox from "@material-ui/core/Checkbox"
+import FormControlLabel from "@material-ui/core/FormControlLabel"
+import Paper from "@material-ui/core/Paper"
 import Grid from '@material-ui/core/Grid'
 import { FigletContainer } from "../figlet/FigletContainer"
 
