@@ -31,6 +31,9 @@ export default function App() {
                     <Route path="/favourites">
                         <Favourites />
                     </Route>
+                    <Route path="/version">
+                        1.0
+                    </Route>
                     <Route path="/">
                         <Single />
                     </Route>

@@ -2,6 +2,7 @@
   "name": "ascii-generator",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/asciiart-text",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -14,6 +15,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "collect_fonts": "node ./utils/collect_fonts.js",
     "eject": "react-scripts eject"
@@ -40,6 +43,7 @@
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "figlet": "^1.5.0",
+    "gh-pages": "^3.1.0",
     "react-lazyload": "^3.2.0",
     "react-router-dom": "^5.2.0"
   }
