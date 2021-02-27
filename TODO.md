@@ -23,3 +23,4 @@ My ideas that would make this page more awesome:
 - [ ] speed up single font selector `select` item
 - [ ] create share url
 - [ ] load settings from queryparams
+- [x] look better in mobile

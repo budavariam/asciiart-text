@@ -7,7 +7,7 @@ import FormControl from "@material-ui/core/FormControl"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import Grid from "@material-ui/core/Grid"
 import Paper from "@material-ui/core/Paper"
-import Typography  from "@material-ui/core/Typography"
+import Typography from "@material-ui/core/Typography"
 import { useRef } from "react"
 import { copyToClipboard } from "../helpers/clipboard"
 import { Figlet } from "./Figlet"
@@ -29,10 +29,10 @@ export const FigletContainer = (props) => {
         </Paper>
       </CardContent>
       <CardActions>
-        <Grid item xs={1}>
+        <Grid item xs={2} md={1}>
           <Button size="small" onClick={() => copyToClipboard(ref.current)}>Copy</Button>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={3} md={1}>
           <FavouriteContextConsumer>
             {(ctxValue) => (
               <FormControl fullWidth>

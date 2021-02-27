@@ -31,7 +31,7 @@ export function FigletControls({ items = null, figletSettingsAction, figletSetti
         <form noValidate autoComplete="off">
             <Grid container spacing={3}>
                 {items === null &&
-                    <Grid item xs={2}>
+                    <Grid item xs={12} md={2}>
                         <FormControl fullWidth>
                             <InputLabel id="fontlabel">Font</InputLabel>
                             <Select labelId="fontlabel" id="fontSelector" variant="filled" value={figletSettingsState.font.fontKey} onChange={(e) => {
@@ -42,7 +42,7 @@ export function FigletControls({ items = null, figletSettingsAction, figletSetti
                         </FormControl>
                     </Grid>
                 }
-                <Grid item xs={2}>
+                <Grid item xs={12} md={2}>
                     <FormControl fullWidth>
                         <InputLabel id="hlayoutlabel">Horizontal layout</InputLabel>
                         <Select labelId="hlayoutlabel" id="horizontalLayoutSelector" value={figletSettingsState.horizontalLayout.value} onChange={(e) => {
@@ -52,7 +52,7 @@ export function FigletControls({ items = null, figletSettingsAction, figletSetti
                         </Select>
                     </FormControl>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={12} md={2}>
                     <FormControl fullWidth>
                         <InputLabel id="vlayoutlabel">Vertical layout</InputLabel>
                         <Select labelId="vlayoutlabel" id="verticalLayoutSelector" value={figletSettingsState.verticalLayout.value} onChange={(e) => {
@@ -62,7 +62,7 @@ export function FigletControls({ items = null, figletSettingsAction, figletSetti
                         </Select>
                     </FormControl>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={12} md={2}>
                     <FormControl fullWidth>
                         <TextField
                             id="standard-number"
@@ -80,7 +80,7 @@ export function FigletControls({ items = null, figletSettingsAction, figletSetti
                         />
                     </FormControl>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={12} md={2}>
                     <FormControl fullWidth>
                         <FormControlLabel
                             control={
@@ -97,7 +97,7 @@ export function FigletControls({ items = null, figletSettingsAction, figletSetti
                         />
                     </FormControl>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} >
                     <FormControl fullWidth>
                         <TextField
                             id="outlined-multiline-static"
@@ -112,7 +112,7 @@ export function FigletControls({ items = null, figletSettingsAction, figletSetti
                         />
                     </FormControl>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} >
                     {items === null
                         ? <FigletContainer
                             text={figletSettingsState.text}

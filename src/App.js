@@ -20,14 +20,14 @@ export default function App() {
     return (<Router basename={process.env.PUBLIC_URL} >
         <FavouriteContextProvider>
             <FigletSettingsContextProvider>
-                <AppBar position="static" color="inherit" elevation={0} >
-                    <Toolbar>
-                        <Button component={NavLink} activeClassName="is-active" to="/" exact={true}>Single</Button>
-                        <Button component={NavLink} activeClassName="is-active" to="/multi">Multiple</Button>
-                        <Button component={NavLink} activeClassName="is-active" to="/favourites">Favourites</Button>
-                    </Toolbar>
-                </AppBar>
                 <Container>
+                    <AppBar position="static" color="inherit" elevation={0} >
+                        <Toolbar style={{ padding: 0 }}>
+                            <Button component={NavLink} activeClassName="is-active" to="/" exact={true}>Single</Button>
+                            <Button component={NavLink} activeClassName="is-active" to="/multi">Multiple</Button>
+                            <Button component={NavLink} activeClassName="is-active" to="/favourites">Favourites</Button>
+                        </Toolbar>
+                    </AppBar>
                     <Switch>
                         <Route path="/multi">
                             <Multiple />
