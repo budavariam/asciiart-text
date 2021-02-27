@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField'
 import Select from '@material-ui/core/Select'
 import Checkbox from "@material-ui/core/Checkbox"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
-import Paper from "@material-ui/core/Paper"
+import Box from "@material-ui/core/Box"
 import Grid from '@material-ui/core/Grid'
 import { debounce } from '@material-ui/core'
 
@@ -132,7 +132,7 @@ export function FigletControls({ items = null, figletSettingsAction, figletSetti
                                     verticalLayout={figletSettingsState.verticalLayout.value}
                                 />
                             ))
-                            : <Paper>No items available</Paper>
+                            : <Box>No items available</Box>
                     }
                 </Grid>
             </Grid>
