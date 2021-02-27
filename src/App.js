@@ -3,7 +3,7 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    NavLink
 } from "react-router-dom"
 import { Favourites } from "./routes/Favourites"
 import { Multiple } from "./routes/Multiple"
@@ -23,9 +23,9 @@ export default function App() {
                 <Container>
                     <AppBar position="static" color="inherit" elevation={0} >
                         <Toolbar>
-                            <Button component={Link} to="/">Single</Button>
-                            <Button component={Link} to="/multi">Multiple</Button>
-                            <Button component={Link} to="/favourites">Favourites</Button>
+                            <Button component={NavLink} activeClassName="is-active" to="/" exact={true}>Single</Button>
+                            <Button component={NavLink} activeClassName="is-active" to="/multi">Multiple</Button>
+                            <Button component={NavLink} activeClassName="is-active" to="/favourites">Favourites</Button>
                         </Toolbar>
                     </AppBar>
                     <Switch>

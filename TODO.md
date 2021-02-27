@@ -16,6 +16,6 @@
 - [x] keep selection between page changes
 - [ ] keep the controls on top of the page during scrolling
 - [ ] add default texts, Quick brownfox, árvíztűrő tükörfúrógép, numbers, symbols
-- [ ] mark selected link button
+- [x] mark selected link button
 - [ ] fix hidden version endpoint on gh pages
 - [ ] speed up single font selector `select` item
