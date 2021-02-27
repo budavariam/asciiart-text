@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
@@ -7,6 +8,7 @@ import Checkbox from "@material-ui/core/Checkbox"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import Paper from "@material-ui/core/Paper"
 import Grid from '@material-ui/core/Grid'
+import { debounce } from '@material-ui/core'
 
 import { fonts } from "../helpers/fonts.js"
 import { layout } from "../helpers/layout"
@@ -16,7 +18,15 @@ import { FIGLETSETTINGS_ACTIONS } from "./FigletSettingsContext"
 const fontMenuItems = Object.entries(fonts).map(([fontKey, { name }]) => <MenuItem key={fontKey} value={fontKey}>{name}</MenuItem>)
 const layoutMenuItems = Object.entries(layout).map(([layoutKey, { name }]) => <MenuItem key={layoutKey} value={layoutKey}>{name}</MenuItem>)
 
+const debouncedAction = debounce((dispatchFn, action) => dispatchFn(action), 300)
+
 export function FigletControls({ items = null, figletSettingsAction, figletSettingsState }) {
+    const [localText, setlocalText] = useState(() => figletSettingsState.text)
+    useEffect(() => {
+        // Make text editing smoother while don't overwhelm the figlet generator too much during typing
+        debouncedAction(figletSettingsAction, { type: FIGLETSETTINGS_ACTIONS.SET_TEXT, value: localText })
+    }, [figletSettingsAction, localText])
+
     return (
         <form noValidate autoComplete="off">
             <Grid container spacing={3}>
@@ -95,9 +105,9 @@ export function FigletControls({ items = null, figletSettingsAction, figletSetti
                             multiline
                             rows={4}
                             variant="outlined"
-                            value={figletSettingsState.text}
-                            onChange={(e) => { 
-                                figletSettingsAction({ type: FIGLETSETTINGS_ACTIONS.SET_TEXT, value: e.target.value })
+                            value={localText}
+                            onChange={(e) => {
+                                setlocalText(e.target.value)
                             }}
                         />
                     </FormControl>

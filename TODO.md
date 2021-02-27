@@ -1,7 +1,7 @@
 # TODO
 
 - [x] add the missing controls for figlets
-- [ ] debounce a bit for finished typing / or blur
+- [x] debounce a bit while typing into the main text field
 - [ ] copy as slash comment/echo/sql comment
 - [x] add style
 - [x] react-router to switch between single and multi selection
