@@ -1,6 +1,6 @@
 # TODO
 
-- [x] add the missing controls
+- [x] add the missing controls for figlets
 - [ ] debounce a bit for finished typing / or blur
 - [ ] copy as slash comment/echo/sql comment
 - [x] add style
@@ -13,4 +13,9 @@
 - [x] add github actions CI to deploy to gh-pages
 - [x] dockerize development
 - [x] analyze bundle size, and move materialui components out
-- [ ] keep selection between page changes and keep the controls on top of the page during scrolling
+- [x] keep selection between page changes
+- [ ] keep the controls on top of the page during scrolling
+- [ ] add default texts, Quick brownfox, árvíztűrő tükörfúrógép, numbers, symbols
+- [ ] mark selected link button
+- [ ] fix hidden version endpoint on gh pages
+- [ ] speed up single font selector `select` item

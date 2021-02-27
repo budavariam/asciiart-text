@@ -1,28 +1,22 @@
-import { useState } from "react"
-import { fonts } from "../helpers/fonts.js"
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import TextField from '@material-ui/core/TextField'
 import Select from '@material-ui/core/Select'
-import { layout } from "../helpers/layout"
 import Checkbox from "@material-ui/core/Checkbox"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import Paper from "@material-ui/core/Paper"
 import Grid from '@material-ui/core/Grid'
+
+import { fonts } from "../helpers/fonts.js"
+import { layout } from "../helpers/layout"
 import { FigletContainer } from "../figlet/FigletContainer"
+import { FIGLETSETTINGS_ACTIONS } from "./FigletSettingsContext"
 
 const fontMenuItems = Object.entries(fonts).map(([fontKey, { name }]) => <MenuItem key={fontKey} value={fontKey}>{name}</MenuItem>)
 const layoutMenuItems = Object.entries(layout).map(([layoutKey, { name }]) => <MenuItem key={layoutKey} value={layoutKey}>{name}</MenuItem>)
 
-export function FigletControls({ items = null }) {
-    const [text, setText] = useState("Type Something")
-    const [font, setFont] = useState(() => (fonts.font_Standard))
-    const [width, setWidth] = useState(80)
-    const [horizontalLayout, setHorizontalLayout] = useState(() => layout.default)
-    const [verticalLayout, setVerticalLayout] = useState(() => layout.default)
-    const [whitespaceBreak, setWhitespaceBreak] = useState(true)
-
+export function FigletControls({ items = null, figletSettingsAction, figletSettingsState }) {
     return (
         <form noValidate autoComplete="off">
             <Grid container spacing={3}>
@@ -30,8 +24,8 @@ export function FigletControls({ items = null }) {
                     <Grid item xs={2}>
                         <FormControl fullWidth>
                             <InputLabel id="fontlabel">Font</InputLabel>
-                            <Select labelId="fontlabel" id="fontSelector" variant="filled" value={font.fontKey} onChange={(e) => {
-                                setFont(fonts[e.target.value])
+                            <Select labelId="fontlabel" id="fontSelector" variant="filled" value={figletSettingsState.font.fontKey} onChange={(e) => {
+                                figletSettingsAction({ type: FIGLETSETTINGS_ACTIONS.SET_FONT, value: fonts[e.target.value] })
                             }}>
                                 {fontMenuItems}
                             </Select>
@@ -41,8 +35,8 @@ export function FigletControls({ items = null }) {
                 <Grid item xs={2}>
                     <FormControl fullWidth>
                         <InputLabel id="hlayoutlabel">Horizontal layout</InputLabel>
-                        <Select labelId="hlayoutlabel" id="horizontalLayoutSelector" value={horizontalLayout.value} onChange={(e) => {
-                            setHorizontalLayout(layout[e.target.value])
+                        <Select labelId="hlayoutlabel" id="horizontalLayoutSelector" value={figletSettingsState.horizontalLayout.value} onChange={(e) => {
+                            figletSettingsAction({ type: FIGLETSETTINGS_ACTIONS.SET_HORIZONTAL_LAYOUT, value: layout[e.target.value] })
                         }}>
                             {layoutMenuItems}
                         </Select>
@@ -51,8 +45,8 @@ export function FigletControls({ items = null }) {
                 <Grid item xs={2}>
                     <FormControl fullWidth>
                         <InputLabel id="vlayoutlabel">Vertical layout</InputLabel>
-                        <Select labelId="vlayoutlabel" id="verticalLayoutSelector" value={verticalLayout.value} onChange={(e) => {
-                            setVerticalLayout(layout[e.target.value])
+                        <Select labelId="vlayoutlabel" id="verticalLayoutSelector" value={figletSettingsState.verticalLayout.value} onChange={(e) => {
+                            figletSettingsAction({ type: FIGLETSETTINGS_ACTIONS.SET_VERTICAL_LAYOUT, value: layout[e.target.value] })
                         }}>
                             {layoutMenuItems}
                         </Select>
@@ -67,14 +61,11 @@ export function FigletControls({ items = null }) {
                             InputLabelProps={{
                                 shrink: true,
                             }}
-                            value={width}
+                            value={figletSettingsState.width}
                             min={20}
                             max={5000}
                             onChange={(e) => {
-                                const value = parseInt(e.target.value, 10)
-                                if (value >= 20) {
-                                    setWidth(e.target.value)
-                                }
+                                figletSettingsAction({ type: FIGLETSETTINGS_ACTIONS.SET_WIDTH, value: e.target.value })
                             }}
                         />
                     </FormControl>
@@ -84,9 +75,9 @@ export function FigletControls({ items = null }) {
                         <FormControlLabel
                             control={
                                 <Checkbox
-                                    checked={whitespaceBreak}
+                                    checked={figletSettingsState.whitespaceBreak}
                                     onChange={(e) => {
-                                        setWhitespaceBreak(e.target.checked)
+                                        figletSettingsAction({ type: FIGLETSETTINGS_ACTIONS.SET_WHITESPACE_BREAK, value: e.target.checked })
                                     }}
                                     name="whitespaceBreakCheckbox"
                                     color="primary"
@@ -104,33 +95,35 @@ export function FigletControls({ items = null }) {
                             multiline
                             rows={4}
                             variant="outlined"
-                            value={text}
-                            onChange={(e) => { setText(e.target.value) }}
+                            value={figletSettingsState.text}
+                            onChange={(e) => { 
+                                figletSettingsAction({ type: FIGLETSETTINGS_ACTIONS.SET_TEXT, value: e.target.value })
+                            }}
                         />
                     </FormControl>
                 </Grid>
                 <Grid item xs={12}>
                     {items === null
                         ? <FigletContainer
-                            text={text}
-                            font={font}
-                            width={parseInt(width, 10)}
-                            horizontalLayout={horizontalLayout.value}
-                            verticalLayout={verticalLayout.value}
+                            text={figletSettingsState.text}
+                            font={figletSettingsState.font}
+                            width={figletSettingsState.width}
+                            horizontalLayout={figletSettingsState.horizontalLayout.value}
+                            verticalLayout={figletSettingsState.verticalLayout.value}
                         />
                         : items.length > 0
                             ? items.map((currentFont) => (
                                 <FigletContainer
                                     key={currentFont.fontKey}
-                                    text={text}
+                                    text={figletSettingsState.text}
                                     font={currentFont}
-                                    width={parseInt(width, 10)}
-                                    horizontalLayout={horizontalLayout.value}
-                                    verticalLayout={verticalLayout.value}
+                                    width={figletSettingsState.width}
+                                    horizontalLayout={figletSettingsState.horizontalLayout.value}
+                                    verticalLayout={figletSettingsState.verticalLayout.value}
                                 />
                             ))
                             : <Paper>No items available</Paper>
-                        }
+                    }
                 </Grid>
             </Grid>
         </form>)

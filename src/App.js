@@ -13,34 +13,37 @@ import Container from '@material-ui/core/Container'
 import Toolbar from "@material-ui/core/Toolbar"
 import AppBar from "@material-ui/core/AppBar"
 import { FavouriteContextProvider } from "./favourites/FavouriteContext"
+import { FigletSettingsContextProvider } from "./figlet/FigletSettingsContext"
 import { version } from '../package.json'
 
 export default function App() {
     return (<Router basename={process.env.PUBLIC_URL} >
         <FavouriteContextProvider>
-            <Container>
-                <AppBar position="static" color="inherit" elevation={0} >
-                    <Toolbar>
-                        <Button component={Link} to="/">Single</Button>
-                        <Button component={Link} to="/multi">Multiple</Button>
-                        <Button component={Link} to="/favourites">Favourites</Button>
-                    </Toolbar>
-                </AppBar>
-                <Switch>
-                    <Route path="/multi">
-                        <Multiple />
-                    </Route>
-                    <Route path="/favourites">
-                        <Favourites />
-                    </Route>
-                    <Route path="/version">
-                        {version}
-                    </Route>
-                    <Route path="/">
-                        <Single />
-                    </Route>
-                </Switch>
-            </Container>
+            <FigletSettingsContextProvider>
+                <Container>
+                    <AppBar position="static" color="inherit" elevation={0} >
+                        <Toolbar>
+                            <Button component={Link} to="/">Single</Button>
+                            <Button component={Link} to="/multi">Multiple</Button>
+                            <Button component={Link} to="/favourites">Favourites</Button>
+                        </Toolbar>
+                    </AppBar>
+                    <Switch>
+                        <Route path="/multi">
+                            <Multiple />
+                        </Route>
+                        <Route path="/favourites">
+                            <Favourites />
+                        </Route>
+                        <Route path="/version">
+                            {version}
+                        </Route>
+                        <Route path="/">
+                            <Single />
+                        </Route>
+                    </Switch>
+                </Container>
+            </FigletSettingsContextProvider>
         </FavouriteContextProvider>
     </Router>)
 }
