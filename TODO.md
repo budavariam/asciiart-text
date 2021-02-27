@@ -1,5 +1,7 @@
 # TODO
 
+My ideas that would make this page more awesome:
+
 - [x] add the missing controls for figlets
 - [x] debounce a bit while typing into the main text field
 - [ ] copy as slash comment/echo/sql comment
@@ -19,3 +21,5 @@
 - [x] mark selected link button
 - [ ] fix hidden version endpoint on gh pages
 - [ ] speed up single font selector `select` item
+- [ ] create share url
+- [ ] load settings from queryparams
