@@ -19,7 +19,7 @@ My ideas that would make this page more awesome:
 - [ ] keep the controls on top of the page during scrolling
 - [ ] add default texts, Quick brownfox, árvíztűrő tükörfúrógép, numbers, symbols
 - [x] mark selected link button
-- [ ] fix hidden version endpoint on gh pages
+- [x] fix hidden version endpoint on gh pages
 - [ ] speed up single font selector `select` item
 - [+] create share url
 - [+] load settings from queryparams
