@@ -21,6 +21,6 @@ My ideas that would make this page more awesome:
 - [x] mark selected link button
 - [ ] fix hidden version endpoint on gh pages
 - [ ] speed up single font selector `select` item
-- [ ] create share url
-- [ ] load settings from queryparams
+- [+] create share url
+- [+] load settings from queryparams
 - [x] look better in mobile

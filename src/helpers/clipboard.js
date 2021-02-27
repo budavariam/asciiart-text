@@ -1,5 +1,4 @@
-export function copyToClipboard(node) {
-  const copyText = node.textContent;
+export function copyToClipboard(copyText) {
   const textArea = document.createElement('textarea');
   textArea.style.position = "absolute";
   textArea.style.left = "-100%";

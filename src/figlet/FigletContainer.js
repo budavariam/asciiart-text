@@ -15,6 +15,7 @@ import LazyLoad from 'react-lazyload'
 import Favorite from '@material-ui/icons/Favorite'
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder'
 import { FavouriteContextConsumer, FAVOURITE_ACTIONS } from "../favourites/FavouriteContext"
+import { createSearchParamsFromSettings } from "../helpers/searchParams"
 
 export const FigletContainer = (props) => {
   const ref = useRef(null)
@@ -30,7 +31,15 @@ export const FigletContainer = (props) => {
       </CardContent>
       <CardActions>
         <Grid item xs={2} md={1}>
-          <Button size="small" onClick={() => copyToClipboard(ref.current)}>Copy</Button>
+          <Button size="small" onClick={() => copyToClipboard(ref.current.textContent)}>Copy</Button>
+        </Grid>
+        <Grid item xs={2} md={1}>
+          <Button size="small" onClick={() => {
+            const currentSearchParams = createSearchParamsFromSettings(props)
+            const shareUrl = `${window.location.origin}${process.env.PUBLIC_URL}/?${currentSearchParams}`
+            console.log(shareUrl)
+            copyToClipboard(shareUrl)
+          }}>Share</Button>
         </Grid>
         <Grid item xs={3} md={1}>
           <FavouriteContextConsumer>

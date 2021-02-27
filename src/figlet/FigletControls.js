@@ -120,6 +120,7 @@ export function FigletControls({ items = null, figletSettingsAction, figletSetti
                             width={figletSettingsState.width}
                             horizontalLayout={figletSettingsState.horizontalLayout.value}
                             verticalLayout={figletSettingsState.verticalLayout.value}
+                            whitespaceBreak={figletSettingsState.whitespaceBreak}
                         />
                         : items.length > 0
                             ? items.map((currentFont) => (
@@ -130,6 +131,7 @@ export function FigletControls({ items = null, figletSettingsAction, figletSetti
                                     width={figletSettingsState.width}
                                     horizontalLayout={figletSettingsState.horizontalLayout.value}
                                     verticalLayout={figletSettingsState.verticalLayout.value}
+                                    whitespaceBreak={figletSettingsState.whitespaceBreak}
                                 />
                             ))
                             : <Box>No items available</Box>

@@ -1,6 +1,7 @@
 import React, { createContext, useReducer } from "react"
 import { fonts } from "../helpers/fonts.js"
 import { layout } from "../helpers/layout"
+import { getSettingsFromSearchParams } from "../helpers/searchParams"
 
 export const FIGLETSETTINGS_ACTIONS = {
     "SET_TEXT": "SET_TEXT",
@@ -60,7 +61,10 @@ export const FigletSettingsContextProvider = (props) => {
             console.error("Missing action for state", action)
             return state
         }
-    }, defaultState)
+    }, defaultState, (prevprops) => {
+        const initFromSearchParams = getSettingsFromSearchParams()
+        return { ...prevprops, ...initFromSearchParams }
+    })
 
     return (
         <FigletSettingsContext.Provider value={{ state, actionDispatch }} >
