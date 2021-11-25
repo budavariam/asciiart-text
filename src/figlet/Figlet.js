@@ -2,6 +2,7 @@ import React, { useEffect, useState, forwardRef } from 'react'
 import figlet from 'figlet'
 import { fonts } from "../helpers/fonts.js"
 import { layout } from '../helpers/layout.js'
+import { outputFormat, fmtValues } from '../helpers/outputFormat.js'
 
 export const Figlet = forwardRef((
   {
@@ -10,6 +11,7 @@ export const Figlet = forwardRef((
     horizontalLayout = layout.default,
     verticalLayout = layout.default,
     width = 80,
+    fmt = outputFormat.default,
     whitespaceBreak = true,
     ...props },
   ref
@@ -34,8 +36,18 @@ export const Figlet = forwardRef((
         return err
       }
       setAscii(data)
+      const outFormat = fmtValues[fmt.value]
+      const result = [outFormat.start]
+        .concat(
+          data
+            .split("\n")
+            .map(line => `${outFormat.lineStart}${line}${outFormat.lineEnd}`)
+            .join("\n")
+          , outFormat.end
+        )
+      setAscii(result)
     })
-  }, [text, font, horizontalLayout, verticalLayout, width, whitespaceBreak])
+  }, [text, font, horizontalLayout, verticalLayout, width, whitespaceBreak, fmt])
 
   return <pre ref={ref} {...props}>{ascii}</pre>
 })

@@ -1,5 +1,6 @@
 import { fonts } from "../helpers/fonts.js"
 import { layout } from "../helpers/layout"
+import { outputFormat } from "../helpers/outputFormat"
 
 const settingsSearchParams = {
     text: "text",
@@ -8,6 +9,7 @@ const settingsSearchParams = {
     hl: "hl",
     vl: "vl",
     wb: "wb",
+    fmt: "fmt",
 }
 
 export const getSettingsFromSearchParams = () => {
@@ -37,6 +39,10 @@ export const getSettingsFromSearchParams = () => {
     if (vlValue && layout[vlValue]) {
         res["verticalLayout"] = layout[vlValue]
     }
+    const fmtValue = searchParams.get(settingsSearchParams.fmt)
+    if (fmtValue && outputFormat[fmtValue]) {
+        res["fmt"] = outputFormat[fmtValue]
+    }
     const wbValue = searchParams.get(settingsSearchParams.wb)
     if (wbValue) {
         // if wb is defined and not resemble to false then set it to true
@@ -54,6 +60,7 @@ export const createSearchParamsFromSettings = (settings) => {
         ["horizontalLayout", settings.horizontalLayout],
         ["verticalLayout", settings.verticalLayout],
         ["whitespaceBreak", settings.whitespaceBreak],
+        ["fmt", settings.fmt.value],
     ]
     const searchParams = new URLSearchParams(params).toString();
     //console.debug("Generate searchParams %s from %o", searchParams, settings)

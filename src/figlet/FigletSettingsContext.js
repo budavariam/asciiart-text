@@ -1,15 +1,17 @@
 import React, { createContext, useReducer } from "react"
 import { fonts } from "../helpers/fonts.js"
 import { layout } from "../helpers/layout"
+import { outputFormat } from "../helpers/outputFormat"
 import { getSettingsFromSearchParams } from "../helpers/searchParams"
 
 export const FIGLETSETTINGS_ACTIONS = {
-    "SET_TEXT": "SET_TEXT",
-    "SET_FONT": "SET_FONT",
-    "SET_WIDTH": "SET_WIDTH",
-    "SET_HORIZONTAL_LAYOUT": "SET_HORIZONTAL_LAYOUT",
-    "SET_VERTICAL_LAYOUT": "SET_VERTICAL_LAYOUT",
-    "SET_WHITESPACE_BREAK": "SET_WHITESPACE_BREAK",
+    SET_TEXT: "SET_TEXT",
+    SET_FONT: "SET_FONT",
+    SET_WIDTH: "SET_WIDTH",
+    SET_HORIZONTAL_LAYOUT: "SET_HORIZONTAL_LAYOUT",
+    SET_VERTICAL_LAYOUT: "SET_VERTICAL_LAYOUT",
+    SET_WHITESPACE_BREAK: "SET_WHITESPACE_BREAK",
+    SET_OUTPUT_FORMAT: "SET_OUTPUT_FORMAT",
 }
 
 const defaultState = Object.freeze({
@@ -18,6 +20,7 @@ const defaultState = Object.freeze({
     width: 80,
     horizontalLayout: layout.default,
     verticalLayout: layout.default,
+    fmt: outputFormat.default,
     whitespaceBreak: true,
 })
 
@@ -51,6 +54,9 @@ export const FigletSettingsContextProvider = (props) => {
                 }
                 case FIGLETSETTINGS_ACTIONS.SET_WHITESPACE_BREAK: {
                     return { ...state, whitespaceBreak: action.value }
+                }
+                case FIGLETSETTINGS_ACTIONS.SET_OUTPUT_FORMAT: {
+                    return { ...state, fmt: action.value }
                 }
                 default: {
                     console.warn("Unimplemented action", action)
