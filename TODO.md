@@ -4,7 +4,7 @@ My ideas that would make this page more awesome:
 
 - [x] add the missing controls for figlets
 - [x] debounce a bit while typing into the main text field
-- [ ] copy as slash comment/echo/sql comment
+- [x] copy as slash comment/echo/sql comment
 - [x] add style
 - [x] react-router to switch between single and multi selection
 - [x] navigate between single items with the arrow key
@@ -21,6 +21,6 @@ My ideas that would make this page more awesome:
 - [x] mark selected link button
 - [x] fix hidden version endpoint on gh pages
 - [ ] speed up single font selector `select` item
-- [+] create share url
-- [+] load settings from queryparams
+- [x] create share url
+- [x] load settings from queryparams
 - [x] look better in mobile
