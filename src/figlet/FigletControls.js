@@ -12,11 +12,13 @@ import { debounce } from '@material-ui/core'
 
 import { fonts } from "../helpers/fonts.js"
 import { layout } from "../helpers/layout"
+import { outputFormat } from "../helpers/outputFormat"
 import { FigletContainer } from "../figlet/FigletContainer"
 import { FIGLETSETTINGS_ACTIONS } from "./FigletSettingsContext"
 
 const fontMenuItems = Object.entries(fonts).map(([fontKey, { name }]) => <MenuItem key={fontKey} value={fontKey}>{name}</MenuItem>)
 const layoutMenuItems = Object.entries(layout).map(([layoutKey, { name }]) => <MenuItem key={layoutKey} value={layoutKey}>{name}</MenuItem>)
+const fmtMenuItems = Object.entries(outputFormat).map(([fmtKey, { name }]) => <MenuItem key={fmtKey} value={fmtKey}>{name}</MenuItem>)
 
 const debouncedAction = debounce((dispatchFn, action) => dispatchFn(action), 300)
 
@@ -82,6 +84,16 @@ export function FigletControls({ items = null, figletSettingsAction, figletSetti
                 </Grid>
                 <Grid item xs={12} md={2}>
                     <FormControl fullWidth>
+                        <InputLabel id="outputFormatLabel">Output Format</InputLabel>
+                        <Select labelId="outputFormatLabel" id="outputFormatSelector" value={figletSettingsState.fmt.value} onChange={(e) => {
+                            figletSettingsAction({ type: FIGLETSETTINGS_ACTIONS.SET_OUTPUT_FORMAT, value: outputFormat[e.target.value] })
+                        }}>
+                            {fmtMenuItems}
+                        </Select>
+                    </FormControl>
+                </Grid>
+                <Grid item xs={12} md={2}>
+                    <FormControl fullWidth>
                         <FormControlLabel
                             control={
                                 <Checkbox
@@ -121,6 +133,7 @@ export function FigletControls({ items = null, figletSettingsAction, figletSetti
                             horizontalLayout={figletSettingsState.horizontalLayout.value}
                             verticalLayout={figletSettingsState.verticalLayout.value}
                             whitespaceBreak={figletSettingsState.whitespaceBreak}
+                            fmt={figletSettingsState.fmt}
                         />
                         : items.length > 0
                             ? items.map((currentFont) => (
@@ -132,6 +145,7 @@ export function FigletControls({ items = null, figletSettingsAction, figletSetti
                                     horizontalLayout={figletSettingsState.horizontalLayout.value}
                                     verticalLayout={figletSettingsState.verticalLayout.value}
                                     whitespaceBreak={figletSettingsState.whitespaceBreak}
+                                    fmt={figletSettingsState.fmt}
                                 />
                             ))
                             : <Box>No items available</Box>
