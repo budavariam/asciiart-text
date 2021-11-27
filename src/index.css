@@ -16,3 +16,11 @@ code {
 .MuiButton-text.is-active {
   border: 1px solid #cccccc;
 }
+
+.figlet-control-header {
+  position: sticky;
+  top: 1em;
+  z-index: 1;
+  padding: 20px;
+  margin-bottom: 20px;
+}
