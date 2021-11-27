@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior-y: none;
 }
 
 code {
@@ -14,4 +15,12 @@ code {
 
 .MuiButton-text.is-active {
   border: 1px solid #cccccc;
+}
+
+.figlet-control-header {
+  position: sticky;
+  top: 1em;
+  z-index: 1;
+  padding: 20px;
+  margin-bottom: 20px;
 }
