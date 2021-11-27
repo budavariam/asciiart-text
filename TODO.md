@@ -16,7 +16,7 @@ My ideas that would make this page more awesome:
 - [x] dockerize development
 - [x] analyze bundle size, and move materialui components out
 - [x] keep selection between page changes
-- [ ] keep the controls on top of the page during scrolling
+- [x] keep the controls on top of the page during scrolling
 - [ ] add default texts, Quick brownfox, árvíztűrő tükörfúrógép, numbers, symbols
 - [x] mark selected link button
 - [x] fix hidden version endpoint on gh pages
