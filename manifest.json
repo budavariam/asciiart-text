@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "ASCIIArt text generator",
+  "name": "Simple webapp to create nice ASCII text. It has the option to wrap them in comments from programmatic usage, and save favourites.",
   "icons": [
     {
       "src": "favicon.ico",
